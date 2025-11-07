@@ -1,0 +1,41 @@
+<div id="app">
+    <h1>Christmas AI</h1>
+    <div id="chatbox" style="border: 2px solid #fff; padding: 10px; width: 300px; height: 300px; overflow-y: scroll; margin-bottom: 10px; background-color: rgba(0, 0, 0, 0.8);">
+    </div>
+    <input type="text" id="userInput" placeholder="Type a message..." style="width: 240px; padding: 10px; border: 2px solid gold; border-radius: 5px; background-color: rgba(255, 255, 0, 0.1); color: cyan;"/>
+    <button onclick="sendMessage()" style="padding: 10px 15px; background-color: red; color: white; border: none; border-radius: 5px; cursor: pointer;">Send</button>
+</div>
+
+<style>
+    body {
+        background-color: black;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+</style>
+
+<script>
+    function sendMessage() {
+        const userText = document.getElementById('userInput').value;
+        
+        if (userText.trim() === "") return; // Prevent sending empty messages
+
+        document.getElementById('chatbox').innerHTML += `<div>User: ${userText}</div>`;
+        document.getElementById('userInput').value = '';
+
+        // Simple AI responses
+        let botResponse = "I'm not sure how to respond to that.";
+        if (userText.toLowerCase().includes("hello")) {
+            botResponse = "Ho ho ho! Hello! How can I assist you this festive season?";
+        } else if (userText.toLowerCase().includes("how are you")) {
+            botResponse = "I'm just a jolly bunch of code, enjoying the Christmas spirit!";
+        }
+
+        document.getElementById('chatbox').innerHTML += `<div>Bot: ${botResponse}</div>`;
+        document.getElementById('chatbox').scrollTop = document.getElementById('chatbox').scrollHeight; // Scroll to the bottom
+    }
+</script>
